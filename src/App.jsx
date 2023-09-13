@@ -3,6 +3,7 @@ import Cards from "./components/Cards/Cards";
 import Footer from "./components/Footer/Footer";
 import Cart from "./components/Cart/Cart";
 import { useState } from "react";
+import Swal from 'sweetalert2';
 
 function App() {
 
@@ -16,11 +17,19 @@ function App() {
     const newSelectedMembers = [...selectedMembers, selectedMember];
     const alreadySelected = selectedMembers.find(member => member.id === selectedMember.id);
 
-    if (alreadySelected) return alert("Error: Member already selected!");
+    if (alreadySelected) return Swal.fire({
+      icon: 'error',
+      title: 'Error!',
+      text: 'Member is already on your selected list!',
+    });
 
     let cost = selectedMember.salary;
     selectedMembers.forEach(selectedMember => cost += selectedMember.salary);
-    if (cost > budget) return alert("Error: Total cost exceeds your badget!");
+    if (cost > budget) return Swal.fire({
+      icon: 'error',
+      title: 'Error!',
+      text: 'Total cost will exceed your budget!',
+    });
 
     setTotalCost(cost);
     setRemaingBalance(remaingBalance - selectedMember.salary);
