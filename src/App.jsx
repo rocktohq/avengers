@@ -10,7 +10,7 @@ function App() {
 
   const [selectedMembers, setSelectedMembers] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
-  const [remaingBalance, setRemaingBalance] = useState(0);
+  const [remaingBalance, setRemaingBalance] = useState(budget);
 
   const handleSelectedMember = (selectedMember) => {
     const newSelectedMembers = [...selectedMembers, selectedMember];
@@ -23,16 +23,25 @@ function App() {
     if (cost > budget) return alert("Error: Total cost exceeds your badget!");
 
     setTotalCost(cost);
-    setRemaingBalance(budget - cost);
+    setRemaingBalance(remaingBalance - selectedMember.salary);
     setSelectedMembers(newSelectedMembers);
   }
+
+  const handleRemoveMember = (member) => {
+
+    const newMembers = selectedMembers.filter(selectedMember => member.id !== selectedMember.id);
+    setSelectedMembers(newMembers);
+    setTotalCost(totalCost - member.salary);
+    setRemaingBalance(remaingBalance + member.salary);
+  }
+
 
   return (
     <>
       <Header></Header>
       <main className="max-w-screen-xl mx-auto px-2 my-12 flex flex-col md:flex-row gap-10 md:gap-5 lg:gap-10">
         <Cards handleSelectedMember={handleSelectedMember} ></Cards>
-        <Cart selectedMembers={selectedMembers} totalCost={totalCost} remaingBalance={remaingBalance}></Cart>
+        <Cart selectedMembers={selectedMembers} totalCost={totalCost} remaingBalance={remaingBalance} handleRemoveMember={handleRemoveMember}></Cart>
       </main>
       <Footer></Footer>
     </>

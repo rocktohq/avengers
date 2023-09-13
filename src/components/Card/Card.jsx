@@ -9,7 +9,7 @@ export default function Card({ avenger, handleSelectedMember }) {
       </figure>
       <h2 className="text-2xl font-bold text-center">{name}</h2>
       <p className="font-medium flex justify-evenly">
-        <span>Salary: <span className="font-semibold text-gray-500">${salary}</span></span>
+        <span className="font-semibold">Salary: <span className="text-gray-500">${salary}</span></span>
         <span className="bg-purple-700 text-white px-2 rounded">{role}</span>
       </p>
       <div className="card-action text-center">

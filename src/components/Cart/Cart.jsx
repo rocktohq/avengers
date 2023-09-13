@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import CartItem from '../CartItem/CartItem';
 
 
-export default function Cart({ selectedMembers, totalCost, remaingBalance }) {
+export default function Cart({ selectedMembers, totalCost, remaingBalance, handleRemoveMember }) {
 
   return (
     <div className="md:w-1/3">
@@ -16,16 +16,15 @@ export default function Cart({ selectedMembers, totalCost, remaingBalance }) {
 
         <ol className="list-decimal">
           {
-            selectedMembers && selectedMembers.map((selectedMember, idx) => <CartItem key={idx} selectedMember={selectedMember} idx={idx}></CartItem>)
+            selectedMembers && selectedMembers.map((selectedMember, idx) => <CartItem key={idx} selectedMember={selectedMember} idx={idx} handleRemoveMember={handleRemoveMember}></CartItem>)
           }
         </ol>
       </div>
 
-      {totalCost !== 0 && <p className="text-center font-bold p-3 bg-gray-50 rounded-md border-purple-300 border-2">
+      <div className="text-center font-bold p-3 bg-gray-50 rounded-md border-purple-300 border-2">
         <h2>Total cost: <span className="text-red-500">${totalCost}</span></h2>
-        {/* <hr /> */}
         <h2>Remaining balance: <span className="text-green-500">${remaingBalance}</span></h2>
-      </p>}
+      </div>
 
     </div>
   )
@@ -34,5 +33,6 @@ export default function Cart({ selectedMembers, totalCost, remaingBalance }) {
 Cart.propTypes = {
   selectedMembers: PropTypes.array.isRequired,
   totalCost: PropTypes.number,
-  remaingBalance: PropTypes.number
+  remaingBalance: PropTypes.number,
+  handleRemoveMember: PropTypes.func
 }
