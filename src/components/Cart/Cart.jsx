@@ -10,7 +10,7 @@ export default function Cart({ selectedMembers, totalCost, remaingBalance, handl
       <div className="mt-10">
 
         {
-          selectedMembers && <div className="bg-gray-50 p-4 mb-3 rounded-md">
+          selectedMembers && <div className="bg-base-200 p-4 mb-3 rounded-md">
             <h3 className="font-bold">Total hired members: {selectedMembers.length}</h3></div>
         }
 
@@ -21,7 +21,7 @@ export default function Cart({ selectedMembers, totalCost, remaingBalance, handl
         </ol>
       </div>
 
-      <div className="text-center font-bold p-3 bg-gray-50 rounded-md border-purple-300 border-2">
+      <div className="text-center font-bold p-3 bg-base-200 rounded-md border-purple-300 border-2">
         <h2>Total cost: <span className="text-red-500">${totalCost}</span></h2>
         <h2>Remaining balance: <span className="text-green-500">${remaingBalance}</span></h2>
       </div>
